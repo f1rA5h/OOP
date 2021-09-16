@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace practice_1
 {
@@ -9,18 +6,26 @@ namespace practice_1
     {
         static void Main(string[] args)
         {
-            double r = 64.100;
-            double p1 = 0.78932597F;
-            double pr = 100000000000f;
-            double f1 = 3.20000;
-            int s1 = 4;
-            int p = 16;
-            string s = "AMD";
-            decimal dec = 18500.5m;
+            string name;
+            double f; // индекс производительности
+
+            const double r = 64.100; // разряд ОС
+            const float p1 = 0.78932597F; // доступная память
+            const float pr = 100000000000f; // оп/с
+            const double f1 = 3.20000; // разпядность проц
+
+            const int s1 = 4; // жесткий диск
+            const int p = 16; // память
+            const string s = "AMD"; 
+            const decimal dec = 18500.5m; // производительность 
+            
+
             Console.Write("Введите Ваше имя: ");
-            string name = Console.ReadLine();
+            name = Console.ReadLine();
             Console.Write("Введите дробное число: ");
-            double f = double.Parse(Console.ReadLine());
+            
+            f = double.Parse(Console.ReadLine());
+
             Console.WriteLine("");
             Console.WriteLine("Привет, {0}!", name);
             Console.WriteLine("*********************************");

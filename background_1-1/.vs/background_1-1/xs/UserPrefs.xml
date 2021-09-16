@@ -1,14 +1,14 @@
-﻿<Properties StartupConfiguration="{AF3A84E1-9EE4-4FD5-9FFC-9516D9B812A6}|Default">
-  <MonoDevelop.Ide.ItemProperties.practice__1 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="practice_1/Program.cs">
+﻿<Properties StartupConfiguration="{2E814E46-F954-46FE-A200-EEBA8D54C5B0}|Default">
+  <MonoDevelop.Ide.ItemProperties.background__1-1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="background_1-1/Program.cs">
     <Files>
-      <File FileName="practice_1/Program.cs" Line="26" Column="13" />
+      <File FileName="background_1-1/Program.cs" Line="22" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="practice_1" expanded="True">
-            <Node name="practice_1" expanded="True">
+          <Node name="background_1-1" expanded="True">
+            <Node name="background_1-1" expanded="True">
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>

@@ -1,0 +1,15 @@
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.csproj.AssemblyReference.cache
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.AssemblyInfoInputs.cache
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.AssemblyInfo.cs
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.csproj.CoreCompileInputs.cache
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/bin/Debug/net5.0/background_1-1.deps.json
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/bin/Debug/net5.0/background_1-1.runtimeconfig.json
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/bin/Debug/net5.0/background_1-1.runtimeconfig.dev.json
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/bin/Debug/net5.0/background_1-1.dll
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/bin/Debug/net5.0/ref/background_1-1.dll
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/bin/Debug/net5.0/background_1-1.pdb
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.dll
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/ref/background_1-1.dll
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.pdb
+/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/Debug/net5.0/background_1-1.genruntimeconfig.cache
