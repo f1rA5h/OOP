@@ -12,7 +12,7 @@ namespace background_1._3
             a1 = Convert.ToDouble(Console.ReadLine()); //  начальные значения
             a2 = Convert.ToDouble(Console.ReadLine()); 
 
-            tmp = a1 + a2; // 
+            tmp = a1 + a2; 
             for (int i = 2; i < n; i++) 
             {
                 a1 = a2; 
