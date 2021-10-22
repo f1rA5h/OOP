@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{1F5D4251-EFBB-428C-9BC1-240E02E32D3E}|Default">
-  <MonoDevelop.Ide.ItemProperties.background__1.3 FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.background__1.3 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="background_1.3/Program.cs">
     <Files>
-      <File FileName="background_1.3/Program.cs" Line="1" Column="1" />
+      <File FileName="background_1.3/Program.cs" Line="16" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
