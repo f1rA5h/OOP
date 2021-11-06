@@ -67,7 +67,7 @@ namespace Practice
         static uint NoThree(uint number)
         {
             uint result = 0;
-
+            
             int tmp = 0;
             uint tmpNum = number;
 
@@ -77,36 +77,46 @@ namespace Practice
                 tmpNum /= 10;
             }
 
-            int digit;
-            for(int i = 1; i < tmp; i++)
+            uint digit;
+            int j = 0;
+            for(int i = 0; i <= tmp; i++)
             {
-                
+                digit = number % 10;
+                if(digit != 3)
+                {
+                    result += digit * Convert.ToUInt32(Math.Pow(10, j++));
+                }
+                number /= 10;
             }
+            return result;
         }
 
         static void Main(string[] args)
         {
             uint number = uint.Parse(Console.ReadLine());
-            uint result = sum(number);
+            uint result1 = sum(number);
 
-            if(result != 0)
+            if(result1 != 0)
             {
-                Console.WriteLine(result);
+                Console.WriteLine(result1);
             }
             else
             {
                 Console.WriteLine("NO");
             }
 
-            result = sacondEnd(number);
-            if (result < 10) 
+            uint result2 = sacondEnd(number);
+            if (result2 < 10) 
             {
-                Console.WriteLine(result);
+                Console.WriteLine(result1);
             }
             else
             {
                 Console.WriteLine("NO");
             }
+
+            uint result3 = NoThree(number);
+            Console.WriteLine(result3);
         }
     }
 }
