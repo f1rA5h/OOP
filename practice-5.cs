@@ -91,6 +91,32 @@ namespace Practice
             return result;
         }
 
+        static uint DigitSwith(uint number)
+        {
+            int tmp = 0;
+            uint tmpNum = number;
+
+            while(tmpNum > 0) 
+            {
+                tmp++;
+                tmpNum /= 10;
+            }
+
+            uint lastDigit = number % 10;
+
+            uint firstDigit = number;
+            uint j = 1;
+            while(firstDigit >= 10)
+            {
+                j *= 10;
+                firstDigit /= 10;
+            }
+
+            number -= j * firstDigit;
+            number /= 10;
+            
+            return lastDigit * j + number * 10 + firstDigit;
+        }
         static void Main(string[] args)
         {
             uint number = uint.Parse(Console.ReadLine());
@@ -117,6 +143,9 @@ namespace Practice
 
             uint result3 = NoThree(number);
             Console.WriteLine(result3);
+
+            uint result4 = DigitSwith(number);
+            Console.WriteLine(result4);
         }
     }
 }
