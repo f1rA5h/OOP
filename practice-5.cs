@@ -117,6 +117,19 @@ namespace Practice
             
             return lastDigit * j + number * 10 + firstDigit;
         }
+
+        static void Deviders(uint a, uint b)
+        {
+            for(int i = 2; i <= (int)Math.Sqrt(a); i++)
+            {
+               if(a % i == 0) {
+                    if(b % i != 0 && i % b != 0)
+                    {
+                        Console.WriteLine(i);
+                    }
+                }
+            }
+        }
         static void Main(string[] args)
         {
             uint number = uint.Parse(Console.ReadLine());
@@ -146,6 +159,10 @@ namespace Practice
 
             uint result4 = DigitSwith(number);
             Console.WriteLine(result4);
+
+            uint a = Convert.ToUInt32(Console.ReadLine());
+            uint b = Convert.ToUInt32(Console.ReadLine());
+            Deviders(a, b);
         }
     }
 }
