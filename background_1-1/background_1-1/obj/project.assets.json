@@ -20,7 +20,7 @@
       "outputPath": "/Users/alekss/Desktop/OOP/background_1-1/background_1-1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/alekss/.config/NuGet/NuGet.Config"
+        "/Users/alekss/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
