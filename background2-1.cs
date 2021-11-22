@@ -4,7 +4,7 @@ namespace Background
 {
     class Program
     {
-        static int Task1(uint x)
+        static int Zeroes(uint x)
         {
             uint tmp = x;
             uint mask = 1;
@@ -23,7 +23,7 @@ namespace Background
             return counter;
         }
 
-        static void Task2(int x)
+        static void NoFirstZeroes(int x)
         {
             int tmp = x;
             int mask = 1;
@@ -49,7 +49,7 @@ namespace Background
             Console.WriteLine();
         }
 
-        static void Task3(uint x, uint n)
+        static void CycleShift(uint x, uint n)
         {   
 
             uint tmp = x;
@@ -89,14 +89,14 @@ namespace Background
 
 
             Console.Write("Кол-во нулей в двоичной: ");
-            int res1 = Task1(x1);
+            int res1 = Zeroes(x1);
             Console.WriteLine(res1);
             
             Console.Write("Число в двоичной без ведущих нулей: ");
-            Task2(x2);
+            NoFirstZeroes(x2);
 
             Console.Write("Результат цикличного сдвига: ");
-            Task3(x1, n);
+            CycleShift(x1, n);
 
             Console.ReadKey();
         }
