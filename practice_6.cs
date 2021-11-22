@@ -9,10 +9,8 @@ namespace Practice_6{
         int n = Convert.ToInt32(Console.ReadLine());
 
         x >>= n;
-
-        int mask = 0x00000001;
-
-
+        const int mask = 0x00000001;
+     
         return x & mask;
     }
 
@@ -35,6 +33,7 @@ namespace Practice_6{
       Console.WriteLine(res2);
 
       Task2();
+      Console.ReadKey(); 
     }
   }
 }
