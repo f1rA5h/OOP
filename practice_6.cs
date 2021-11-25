@@ -1,8 +1,10 @@
 using System;
 
 
-namespace Practice_6{
-  static class Program{
+namespace Practice_6
+{
+  static class Program
+  {
     static int Task1()
     {
         int x = Convert.ToInt32(Console.ReadLine());
