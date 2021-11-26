@@ -17,7 +17,7 @@ namespace practice7
         static void MinusDevider(ref int param)
         {
             int devider = 1;
-            for(int i = 1; i < param; i++)
+            for(int i = 1; i <= param / 2; i++)
             {
                 if (param % i == 0)
                 {
