@@ -84,17 +84,26 @@ namespace background2_2
                 case 1:
                     Console.Write("Введите число:\t");
                     number = ulong.Parse(Console.ReadLine());
-                    PutNum(number, ref memory);
+                    if(isNumberValid(number))
+                    {
+                        PutNum(number, ref memory);
+                    }
                     break;
                 case 2:
                     Console.WriteLine("Введите индекс:\t");
                     index = int.Parse(Console.ReadLine());
-                    ReadNum(index, memory);
+                    if(isIndexValid(index))
+                    {
+                        ReadNum(index, memory);
+                    }
                     break;
                 case 3:
                     Console.WriteLine("Введите индекс:\t");
                     index = int.Parse(Console.ReadLine());
-                    ClearCell(index, ref memory);
+                    if(isIndexValid(index))
+                    {
+                        ClearCell(index, ref memory);
+                    }
                     break;
                 case 4:
                     cont = false;
@@ -105,13 +114,29 @@ namespace background2_2
             }
         }
         
-        static void isIndexValid(int index)
+        static bool isIndexValid(int index)
         {
-
+            if(index <= 16)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Индекс недействителен");
+                return false;
+            }
         }
-        static void isNumberValid(int index)
+        static bool isNumberValid(ulong index)
         {
-
+            if(index <= 15)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Число слишком большое");
+                return false;
+            }
         }
 
         static void Main(string[] args)
