@@ -15,7 +15,12 @@ namespace practice7
         {
             int n = int.Parse(Console.ReadLine());
             int result = F(n);
-            Console.WriteLine(result);
+            while(result < 1000)
+            {
+                n++;
+                result = F(n);
+            }
+            Console.WriteLine(n);
         }
     }
 }
