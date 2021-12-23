@@ -18,6 +18,7 @@ namespace practice7
             while(result < 1000)
             {
                 n++;
+                
                 result = F(n);
             }
             Console.WriteLine(n);
