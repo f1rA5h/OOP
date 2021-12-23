@@ -55,7 +55,7 @@ namespace Practice_6
                 }
             }
         }
-        array[minimum] = sum;
+        array[maximum] = sum;
     }
 
     static int Difference(int[] array, int k)
@@ -70,6 +70,11 @@ namespace Practice_6
         }
         return count;
     }
+
+    static int MinDel(int[] array)
+    {
+        
+    }
     static void Main()
     {
         int len = Convert.ToInt32(Console.ReadLine());
@@ -80,7 +85,7 @@ namespace Practice_6
 
         ReplaceMin(ref array);
         OutputArray(array);
-        
+
         ReplaceMax(ref array);
         OutputArray(array);
 
