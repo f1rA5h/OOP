@@ -4,55 +4,180 @@ namespace practice7
 {
     static class Program
     {
-        static void Plus(string s1, string s2)
+        static string Plus(string s1, string s2)
         {
             int difference = s1.Length - s2.Length;
+            int c = 0;
+            int saved = 0;
+            string result = "";
+            int sum;
+            int current1, current2;
 
-            if(difference >= 0) 
+            while(c != s1.Length && c != s2.Length)
             {
-                for (int i = 0; i < difference - 1; i++)
-                {
-                    Console.Write(s1[i]);
-                }
-                
-                if(Char.GetNumericValue(s1[difference]) + Char.GetNumericValue(s2[0]) >= 10){
-                    Console.Write(Char.GetNumericValue(s1[difference - 1]) + 1);}
-                else {Console.Write(s1[difference - 1]);}
-                
-                int addiction = 1;
-                while(addiction + difference != s1.Length)
-                {
-                    if(Char.GetNumericValue(s1[difference + addiction]) + Char.GetNumericValue(s2[addiction]) >= 10){
-                    Console.Write(Char.GetNumericValue(s1[difference + addiction - 1]) + Char.GetNumericValue(s2[addiction]) + 1);}
-                    else {Console.Write(s1[difference + addiction - 1]);}
-                    addiction++;
-                }
+                c++;
+                current1 = Convert.ToInt32(Char.GetNumericValue(s1[s1.Length - c]));
+                current2 = Convert.ToInt32(Char.GetNumericValue(s2[s2.Length - c]));
 
-                Console.Write(Char.GetNumericValue(s1[s1.Length - 1]) + Char.GetNumericValue(s2[s2.Length - 1]));
+                sum = current1 + current2 + saved;
+                if(sum >= 10)
+                    saved = 1;
+                else
+                    saved = 0;
+                result = sum % 10 + result;
             }
 
-            // while(s2.Length > 0 && s1.Length > 0)
-            // {
+            if(difference > 0)
+            {
+                while(c != s1.Length)
+                {
+                    c++;
+                    current1 = Convert.ToInt32(Char.GetNumericValue(s1[s1.Length - c]));
+                    result = (current1 + saved) + result;
+                }
+            }
+            else if(difference == 0)
+            {
+                if(saved == 1)
+                {
+                    result = "1" + result;
+                }
+            }
+            else
+            {   
+                while(c != s2.Length)
+                {
+                    c++;
+                    current2 = Convert.ToInt32(Char.GetNumericValue(s2[s2.Length - c]));
+                    result = (current2 + saved) + result;
+                }
+            }
 
-            // }
-            
+            return result;
         }
 
-        static void Minus(string s1, string s2){}
+        static string Minus(string s1, string s2)
+        {
+            int difference = s1.Length - s2.Length;
+            int c = 0;
+            int saved = 0;
+            string result = "";
+            int sum;
+            int current1, current2;
+            bool resDig = false;
+            bool same = false;
+
+            if(s1.Length > s2.Length)
+            {
+                resDig = false;
+            }
+            else if(s1.Length < s2.Length)
+            {
+                resDig = true;
+            }
+            else
+            {
+                int i = 0;
+                while(true)
+                {
+                    current1 = Convert.ToInt32(Char.GetNumericValue(s1[i]));
+                    current2 = Convert.ToInt32(Char.GetNumericValue(s2[i]));
+                    if(current1 > current2)
+                    {
+                        resDig = false;
+                        break;
+                    }
+                    else if(current1 < current2)
+                    {
+                        resDig = true;
+                        break;
+                    }
+                    if(i == s1.Length - 1)
+                    {
+                        same = true;
+                        break;
+                    }
+
+                    i++;
+                }
+            }
+
+            if(resDig)
+            {
+                string s3 = s2;
+                s2 = s1;
+                s1 = s3;
+            }
+
+            while(c != s1.Length && c != s2.Length)
+            {
+                c++;
+                current1 = Convert.ToInt32(Char.GetNumericValue(s1[s1.Length - c]));
+                current2 = Convert.ToInt32(Char.GetNumericValue(s2[s2.Length - c]));
+
+                sum = current1 - current2 - saved;
+                if(sum < 0)
+                {
+                    saved = 1;
+                    result = (10 + sum - saved) + result;
+                }
+                else
+                {
+                    saved = 0;
+                    result = (sum - saved) + result;
+                }
+            }
+
+            if(difference > 0)
+            {
+                while(c != s1.Length)
+                {
+                    c++;
+                    current1 = Convert.ToInt32(Char.GetNumericValue(s1[s1.Length - c]));
+                    result = (current1 - saved) + result;
+                }
+            }
+            else if(difference == 0)
+            {
+                result = "" + result;
+            }
+            else
+            {   
+                while(c != s2.Length)
+                {
+                    c++;
+                    current2 = Convert.ToInt32(Char.GetNumericValue(s2[s2.Length - c]));
+                    result = (current2 - saved) + result;
+                }
+            }
+            if(same)
+            {
+                return "0";
+            }
+            else
+            {
+                if(resDig)
+                {
+                    return "-" + result;
+                }
+            }
+            return result;
+        }
         static void Main()
         {
             string s1 = Console.ReadLine();   
             string s2 = Console.ReadLine();
             string operation = Console.ReadLine();
 
+            string res;
 
-            if(operation == "+")
+            if(operation == "+"){
             
-                Plus(s1, s2);
-            else if (operation == "-")
+                res = Plus(s1, s2);Console.WriteLine(res);}
+            else if (operation == "-"){
             
-                 Minus(s1, s2);
-            
+                res = Minus(s1, s2);Console.WriteLine(res);
+            }
             else Console.WriteLine("ошибка");
         }
     }
