@@ -158,6 +158,17 @@ namespace practice7
                     c++;
                     current2 = Convert.ToInt32(Char.GetNumericValue(s2[s2.Length - c]));
                     result = (current2 - saved) + result;
+                    sum = current2 - saved;
+                    if(sum < 0)
+                    {
+                        saved = 1;
+                        result = (10 + sum - saved) + result;
+                    }
+                    else
+                    {
+                        saved = 0;
+                        result = (sum - saved) + result;
+                    }
                 }
             }
             if(same)
