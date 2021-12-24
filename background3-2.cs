@@ -22,7 +22,7 @@ namespace Practice_6
         Console.WriteLine();
     }
 
-    static void ReplaceMin(ref int[] array)
+    static void ReplaceMin(int[] array)
     {
         int minimum = 0;
         int sum = 0;
@@ -37,10 +37,11 @@ namespace Practice_6
                 }
             }
         }
-        array[minimum] = sum;
+        if(sum == 0) Console.WriteLine("нет");
+        else array[minimum] = sum;
     }
 
-    static void ReplaceMax(ref int[] array)
+    static void ReplaceMax(int[] array)
     {
         int maximum = 0;
         int sum = 0;
@@ -55,7 +56,8 @@ namespace Practice_6
                 }
             }
         }
-        array[maximum] = sum;
+        if (sum == 0) Console.WriteLine("нет");
+        else array[maximum] = sum;
     }
 
     static int Difference(int[] array, int k)
@@ -71,26 +73,43 @@ namespace Practice_6
         return count;
     }
 
-    static int MinDel(int[] array)
+    static int MinDelCount(int[] array)
     {
-        
+        int count = 0;
+        for(int i = 1; i <= array.Length - 2; i++)
+        {
+            if(i != -1)
+            {
+                if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
+                {
+                    if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
     }
+    
     static void Main()
     {
         int len = Convert.ToInt32(Console.ReadLine());
         int[] array = new int[len];
 
         InputArray(len, ref array);
-        OutputArray(array);
+        // OutputArray(array);
 
-        ReplaceMin(ref array);
-        OutputArray(array);
+        // ReplaceMin(array);
+        // OutputArray(array);
 
-        ReplaceMax(ref array);
-        OutputArray(array);
+        // ReplaceMax(array);
+        // OutputArray(array);
 
-        int k = Convert.ToInt32(Console.ReadLine());
-        int res = Difference(array, k);
+        // int k = Convert.ToInt32(Console.ReadLine());
+        // int res = Difference(array, k);
+        // Console.WriteLine(res);
+        int res = MinDelCount(array);
         Console.WriteLine(res);
     }
   }
