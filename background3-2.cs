@@ -73,20 +73,87 @@ namespace Practice_6
         return count;
     }
 
-    static int MinDelCount(int[] array)
+    static int MinDelCount(int[] array, bool firstTime = true)
     {
         int count = 0;
+        bool mark;
+        int[] indexes = new int[array.Length];
+
+        
+
         for(int i = 1; i <= array.Length - 2; i++)
         {
+            mark = false;
             if(i != -1)
             {
-                if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
+                // if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
+                // {
+                //     count++;
+                // }
+                if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
                 {
-                    count++;
+                    if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
+                    {
+                        count++;
+                        mark = true;
+                    }
+                }
+                if(!mark)
+                {
+                    indexes[i] = i;
+                }
+                else
+                {
+                    indexes[i] = -1;
                 }
             }
         }
-        return count;
+
+        if(firstTime)
+        {
+            int tmp = 0;
+            for(int i = 0; i < indexes.Length; i++)
+            {
+                if(indexes[i] >= 0)
+                {
+                    tmp++;
+                }
+            }
+            int[] array2 = new int[tmp];
+            int j = 0;
+            for(int i = 1; i <= array.Length - 2; i++)
+            {
+                Console.WriteLine(array[i]);
+            mark = false;
+            if(i != -1)
+            {
+                // if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
+                // {
+                //     count++;
+                // }
+                if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
+                {
+                    if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
+                    {
+                        mark = true;
+                    }
+                }
+                if(!mark)
+                {
+                    array2[j] = array[i];
+                    j++;
+                }
+            }
+        }
+
+            OutputArray(array2);
+
+            return count + MinDelCount(array2, false);
+        }
+        else
+        {
+            return count;
+        }
     }
     
     static void Main()
