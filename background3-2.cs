@@ -80,12 +80,9 @@ namespace Practice_6
         {
             if(i != -1)
             {
-                if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
+                if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
                 {
-                    if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
-                    {
-                        count++;
-                    }
+                    count++;
                 }
             }
         }
