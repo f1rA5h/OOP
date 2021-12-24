@@ -79,7 +79,13 @@ namespace Practice_6
         bool mark;
         int[] indexes = new int[array.Length];
 
-        
+        if(array.Length == 2)
+        {
+            if(array[0] == array[1])
+            {
+                return 1;
+            }
+        }
 
         for(int i = 1; i <= array.Length - 2; i++)
         {
@@ -121,32 +127,32 @@ namespace Practice_6
             }
             int[] array2 = new int[tmp];
             int j = 0;
-            for(int i = 1; i <= array.Length - 2; i++)
-            {
-                Console.WriteLine(array[i]);
-            mark = false;
-            if(i != -1)
-            {
-                // if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
-                // {
-                //     count++;
-                // }
-                if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
+                for(int i = 1; i <= array.Length - 2; i++)
                 {
-                    if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
+                Console.WriteLine(array[i]);
+                mark = false;
+                if(i != -1)
+                {
+            // if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
+            // {
+            //     count++;
+            // }
+                    if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
                     {
-                        mark = true;
+                        if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
+                        {
+                            mark = true;
+                        }
+                    }
+                    if(!mark)
+                    {
+                        array2[j] = array[i];
+                        j++;
                     }
                 }
-                if(!mark)
-                {
-                    array2[j] = array[i];
-                    j++;
-                }
             }
-        }
-
-            OutputArray(array2);
+            array2[0] = array[0];
+            array2[array2.Length - 1] = array[array.Length - 1];
 
             return count + MinDelCount(array2, false);
         }
@@ -155,7 +161,7 @@ namespace Practice_6
             return count;
         }
     }
-    
+
     static void Main()
     {
         int len = Convert.ToInt32(Console.ReadLine());

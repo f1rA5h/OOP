@@ -76,6 +76,7 @@ namespace practice7
             int current1, current2;
             bool resDig = false;
             bool same = false;
+            int zeroMark = 0;
 
             if(s1.Length > s2.Length)
             {
@@ -128,8 +129,9 @@ namespace practice7
                 sum = current1 - current2 - saved;
                 if(sum < 0)
                 {
-                    saved = 1;
+
                     result = (10 + sum - saved) + result;
+                    saved = 1;
                 }
                 else
                 {
@@ -144,7 +146,26 @@ namespace practice7
                 {
                     c++;
                     current1 = Convert.ToInt32(Char.GetNumericValue(s1[s1.Length - c]));
-                    result = (current1 - saved) + result;
+                    // result = (current2 - saved) + result;
+                    sum = current1 - saved;
+                    if(sum < 0)
+                    {
+                        if(current1 == 0)
+                        {
+                            zeroMark = 1;
+                        }
+                        else
+                        {
+                            zeroMark = 0;
+                        }
+                        result = (10 + sum - saved + zeroMark) + result;
+                        saved = 1;
+                    }
+                    else
+                    {
+                        saved = 0;
+                        result = (sum - saved) + result;
+                    }
                 }
             }
             else if(difference == 0)
@@ -157,12 +178,12 @@ namespace practice7
                 {
                     c++;
                     current2 = Convert.ToInt32(Char.GetNumericValue(s2[s2.Length - c]));
-                    result = (current2 - saved) + result;
+                    // result = (current2 - saved) + result;
                     sum = current2 - saved;
                     if(sum < 0)
                     {
-                        saved = 1;
                         result = (10 + sum - saved) + result;
+                        saved = 1;
                     }
                     else
                     {
