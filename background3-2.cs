@@ -96,13 +96,10 @@ namespace Practice_6
                 // {
                 //     count++;
                 // }
-                if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
-                {
-                    if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
+                if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
                     {
                         count++;
                         mark = true;
-                    }
                 }
                 if(!mark)
                 {
@@ -137,12 +134,9 @@ namespace Practice_6
             // {
             //     count++;
             // }
-                    if(!(array[i] > array[i + 1] && array[i] > array[i - 1]))
+                    if(!(array[i] >= array[i + 1] ^ array[i] <= array[i - 1]))
                     {
-                        if(!(array[i] < array[i + 1] && array[i] < array[i - 1]))
-                        {
                             mark = true;
-                        }
                     }
                     if(!mark)
                     {
