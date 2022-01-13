@@ -1,4 +1,4 @@
 # OOP
-Nothing spetian, just a task for programming lesson.
+Nothing spetial, just a task for programming lesson.
 
 Why isn't private? I have classmates, so...
