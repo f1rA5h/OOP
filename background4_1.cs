@@ -86,6 +86,31 @@ namespace Practice_6
             }
         }   
 
+        static void SwitchD(int[,] array)
+        {
+            int n = array.GetLength(0);
+            int[] d1 = new int[n];
+            int[] d2 = new int[n];
+
+            for(int i = 0; i < n; i++)
+            {
+                d1[i] = array[i, i];
+            }
+            for(int i = 0; i < n; i++)
+            {
+                d2[i] = array[i, (n - 1) - i];
+            }
+
+            for(int i = 0; i < n; i++)
+            {
+                array[i, i] = d2[i];
+            }
+            for(int i = 0; i < n; i++)
+            {
+                array[i, (n - 1) - i] = d1[i];
+            }
+        }
+
         static void Main()
         {
             int len0 = Convert.ToInt32(Console.ReadLine());
@@ -93,6 +118,9 @@ namespace Practice_6
             int[,] array = new int[len0, len1];
 
             InputArray(array);
+            OutputArray(array);
+
+            SwitchD(array);
             OutputArray(array);
         }
     }
