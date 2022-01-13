@@ -17,9 +17,21 @@ namespace Practice_6
             }
         }
 
+        static void OutputArray(string[,] array)
+        {
+            for(int i = 0; i < array.GetLength(0); i++)
+            {
+                for(int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write($"{array[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+        }
+
         static void InputArray(int[,] array)
         {                           //      0     
-            byte side = 0;           //    3   1
+            byte side = 0;          //    3   1
                                     //      2
             
             int rightBorder = array.GetLength(0) - 1;
@@ -111,6 +123,39 @@ namespace Practice_6
             }
         }
 
+        static void ChessD(string[,] array)
+        {
+            bool change = false;
+            int x, y;
+            int n = array.GetLength(0);
+            for (int i = 0; i < array.Length; i++)
+            {
+                y = i / n;
+                x = i - y * n;
+
+                if(x == 0) change = !change;
+
+                array[x, y] = i % 2 == 0 ^ change ? " " : "*"; 
+            }
+        }
+
+        static void SnowOne(string[,] array)
+        {
+            int x, y;
+            int n = array.GetLength(0);
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                y = i / n;
+                x = i - y * n;
+
+                if(x == 0 || y == 0 || x == n - 1 || y == n - 1)
+                    array[x, y] = i % 2 == 0 ? "*" : " "; 
+                else
+                    array[x, y] = "*";
+            }
+        }
+
         static void Main()
         {
             int len0 = Convert.ToInt32(Console.ReadLine());
@@ -122,6 +167,16 @@ namespace Practice_6
 
             SwitchD(array);
             OutputArray(array);
+
+            int n = int.Parse(Console.ReadLine());
+            string[,] array2 = new string[n, n];
+
+            if(n % 2 == 0)
+                ChessD(array2);
+            else
+                SnowOne(array2);
+            
+            OutputArray(array2);
         }
     }
 }
