@@ -1,4 +1,4 @@
 # OOP
-Practices from OOP lessons. Nothing special
+Nothing spetian, just a task for programming lesson.
 
-I'm so sorry I've forgotten 'bout .gitignore. If you're here add it plz and fix repo
+Why isn't private? I have classmates, so...
