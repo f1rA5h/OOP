@@ -23,7 +23,7 @@ namespace Practice_6
             {
                 for(int j = 0; j < array.GetLength(1); j++)
                 {
-                    Console.Write($"{array[i, j]} ");
+                    Console.Write($" {array[i, j]}");
                 }
                 Console.WriteLine();
             }
@@ -132,9 +132,7 @@ namespace Practice_6
             {
                 y = i / n;
                 x = i - y * n;
-
                 if(x == 0) change = !change;
-
                 array[x, y] = i % 2 == 0 ^ change ? " " : "*"; 
             }
         }
@@ -148,11 +146,10 @@ namespace Practice_6
             {
                 y = i / n;
                 x = i - y * n;
-
-                if(x == 0 || y == 0 || x == n - 1 || y == n - 1)
-                    array[x, y] = i % 2 == 0 ? "*" : " "; 
+                if(y == n / 2 || x == n / 2 || y == x || y == (n - 1) - x)
+                    array[x, y] ="*";
                 else
-                    array[x, y] = "*";
+                    array[x, y] = " ";
             }
         }
 
