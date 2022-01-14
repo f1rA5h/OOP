@@ -125,15 +125,13 @@ namespace Practice_6
 
         static void ChessD(string[,] array)
         {
-            bool change = false;
             int x, y;
             int n = array.GetLength(0);
             for (int i = 0; i < array.Length; i++)
             {
                 y = i / n;
-                x = i - y * n;
-                if(x == 0) change = !change;
-                array[x, y] = i % 2 == 0 ^ change ? " " : "*"; 
+                x = i % n;
+                array[x, y] = (x + y)% 2 == 0 ? "*" : " ";
             }
         }
 
@@ -145,7 +143,7 @@ namespace Practice_6
             for (int i = 0; i < array.Length; i++)
             {
                 y = i / n;
-                x = i - y * n;
+                x = i % n;
                 if(y == n / 2 || x == n / 2 || y == x || y == (n - 1) - x)
                     array[x, y] ="*";
                 else
