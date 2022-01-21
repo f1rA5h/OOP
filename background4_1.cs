@@ -56,7 +56,6 @@ namespace Practice_6
                         xCoord += 1;
                         array[xCoord, yCoord] = j;
                     }
-                    Console.WriteLine("3");
                     side = 1;
                     topBorder += 1;
                 } else
