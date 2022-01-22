@@ -21,17 +21,17 @@ class Program
 
     private enum Seasons
     {
-        зима = 1,
-        весна,
-        лето,
-        осень
+        Зима = 1,
+        Весна,
+        Лето,
+        Осень
     };
     
     private const int monthAmount = 12;
     private const int firstMonthIndex = 1;
     private const int daysInYear = 365;
     
-    static void Main() 
+    private static void Main() 
     {
         ShowValues();
         
@@ -45,38 +45,38 @@ class Program
         );
     }
 
-    static Seasons? ReturnSeason(int? month) => month switch
+    private static Seasons? ReturnSeason(int? month) => month switch
     {
-        <= 2 => Seasons.зима,
-        <= 5 => Seasons.весна,
-        <= 8 => Seasons.лето,
-        <= 11 => Seasons.осень,
-        12 => Seasons.зима,
+        <= 2 => Seasons.Зима,
+        <= 5 => Seasons.Весна,
+        <= 8 => Seasons.Лето,
+        <= 11 => Seasons.Осень,
+        12 => Seasons.Зима,
         _ => null
     };
 
-    static int? GetDaysBeforeDate(int? month, int? day)
+    private static int? GetDaysBeforeDate(int? month, int? day)
     {
         return GetDaysBeforeMonth(month) + day;
     }
-    static int InputNumber(string message)
+    private static int InputNumber(string message)
     {
         Console.WriteLine(message);
         return int.Parse(Console.ReadLine());
     }
     
-    static int? InputDays(int? external, int days)
+    private static int? InputDays(int? external, int days)
     {
         return GetMonth((days <= daysInYear) ? days + external : days % daysInYear + external);
     }
     
-    static void ShowValues(int monthRealIndex = firstMonthIndex)
+    private static void ShowValues(int monthRealIndex = firstMonthIndex)
     {
         Console.WriteLine($"Месяц: \"{Month.январь + monthRealIndex - 1}\", соответсвует числу {monthRealIndex++}");
         if (monthRealIndex <= monthAmount) ShowValues(monthRealIndex);
     }
 
-    static int? GetDays(int? monthsNumber) => monthsNumber switch 
+    private static int? GetDays(int? monthsNumber) => monthsNumber switch 
     {
         <= 8 when monthsNumber == 2 => 28,
         <= 8 => 30 + monthsNumber % 2,
@@ -84,13 +84,13 @@ class Program
         _ => null
     };
 
-    static int? GetDaysBeforeMonth(int? month, int? day = 0)
+    private static int? GetDaysBeforeMonth(int? month, int? day = 0)
     {
         if (month == 1) return GetDays(month) + day;
         else return day + GetDays(month) + GetDaysBeforeMonth(month - 1, day);
     }
 
-    static int? GetMonth(int? days, Month month = Month.январь)
+    private static int? GetMonth(int? days, Month month = Month.январь)
     {
         if (days == null) Console.WriteLine("ошибка");
         // int? res = days - GetDays((int)++month);
