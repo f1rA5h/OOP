@@ -5,27 +5,14 @@ class Program
 {
     private enum Month
     {
-        январь = 1,
-        февраль,
-        март,
-        апрель,
-        май,
-        июль,
-        июнь,
-        август,
-        сентябрь,
-        ноябрь,
-        октябрь,
+        январь = 1, февраль,
+        март, апрель, май,
+        июль, июнь, август,
+        сентябрь, ноябрь, октябрь,
         декабрь
     };
 
-    private enum Seasons
-    {
-        Зима = 1,
-        Весна,
-        Лето,
-        Осень
-    };
+    private enum Seasons { Зима = 1, Весна, Лето, Осень };
     
     private const int monthAmount = 12;
     private const int firstMonthIndex = 1;
@@ -54,11 +41,7 @@ class Program
         12 => Seasons.Зима,
         _ => null
     };
-
-    private static int? GetDaysBeforeDate(int? month, int? day)
-    {
-        return GetDaysBeforeMonth(month) + day;
-    }
+    
     private static int InputNumber(string message)
     {
         Console.WriteLine(message);
@@ -66,10 +49,8 @@ class Program
     }
     
     private static int? InputDays(int? external, int days)
-    {
-        return GetMonth((days <= daysInYear) ? days + external : days % daysInYear + external);
-    }
-    
+        => GetMonth((days <= daysInYear) ? days + external : days % daysInYear + external);
+
     private static void ShowValues(int monthRealIndex = firstMonthIndex)
     {
         Console.WriteLine($"Месяц: \"{Month.январь + monthRealIndex - 1}\", соответсвует числу {monthRealIndex++}");
@@ -83,7 +64,10 @@ class Program
         <= 12 => 31 - monthsNumber % 2,
         _ => null
     };
-
+    
+    private static int? GetDaysBeforeDate(int? month, int? day)
+        => GetDaysBeforeMonth(month) + day;
+    
     private static int? GetDaysBeforeMonth(int? month, int? day = 0)
     {
         if (month == 1) return GetDays(month) + day;
@@ -92,11 +76,8 @@ class Program
 
     private static int? GetMonth(int? days, Month month = Month.январь)
     {
-        if (days == null) Console.WriteLine("ошибка");
-        // int? res = days - GetDays((int)++month);
-
+        if (days == null) return null;
         if (days - GetDays((int) month + 1) <= 0) return 1;
-
         return 1 + GetMonth(days - GetDays((int) month + 1), month);
     }
 }
