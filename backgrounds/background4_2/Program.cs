@@ -13,71 +13,10 @@ namespace background4_2
             public string subject;
             public int number;
         }
-
-        private static Lesson[][] OldInputFromFile(string filePath)
-        {
-            Lesson[][] timeTable;
-            StreamReader file = new StreamReader(filePath);
-            
-            int groupsCount = int.Parse(file.ReadLine());
-            timeTable = new Lesson[groupsCount][];
-            
-            for (int i = 0; i < groupsCount; i++)
-            {
-                string group = file.ReadLine();
-                int lessonsCount = int.Parse(file.ReadLine());
-                timeTable[i] = new Lesson[lessonsCount];
-                for (int j = 0; j < lessonsCount; j++)
-                {
-                    timeTable[i][j].group = group;
-                    timeTable[i][j].number = j;
-                    
-                    timeTable[i][j].teacher = file.ReadLine();
-                    timeTable[i][j].subject = file.ReadLine();
-                    timeTable[i][j].classroom = int.Parse(file.ReadLine());
-                }
-            }
-            file.Close();
-            return timeTable;
-        }
         private static string ToFixedSize(int length, string source)
         {
             return source.PadRight(length).Substring(0, length);
         }
-        
-        private static void OldOutput(Lesson[][] timeTable)
-        {
-            int length = 20;
-            int max = 0;
-            string fixedForGroup = "      ";
-            string fixedForGroupLast = "   ";
-            
-            for (int i = 0; i < timeTable.Length; i++)
-            {
-                if (timeTable.Length > max)
-                    max = timeTable.Length;
-                
-                for (int j = 0; j < timeTable[i].Length; j++)
-                    Console.Write(fixedForGroup + ToFixedSize(length, timeTable[i][j].classroom.ToString()));
-                Console.WriteLine();
-
-                Console.Write(timeTable[i][0].group + fixedForGroupLast + ToFixedSize(length, timeTable[i][0].subject));
-
-                for (int j = 1; j < timeTable[i].Length; j++)
-                    Console.Write(fixedForGroup + ToFixedSize(length, timeTable[i][j].subject));
-                Console.WriteLine();
-
-                for (int j = 0; j < timeTable[i].Length; j++)
-                    Console.Write(fixedForGroup + ToFixedSize(length, timeTable[i][j].teacher));
-                Console.WriteLine("\n");
-            }
-
-            for (int j = 0; j <= max; j++)
-            {
-                Console.Write(fixedForGroup + ToFixedSize(length, (j + 1).ToString()));
-            }
-        }
-
         private static void Check(Lesson[,] timeTable)
         {
             bool isCucsess = false;
