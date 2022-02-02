@@ -5,14 +5,16 @@ namespace background4_2
 {
     internal class Program
     {
+        
         struct Lesson
         {
             public int classroom;
             public string teacher;
             public string group;
-            public string subject;
+            public Subjects subject;
             public int number;
         }
+        enum Subjects { Алгебра, ООП, ТОИ, Геометрия, Русский, Химия }
         private static string ToFixedSize(int length, string source)
         {
             return source.PadRight(length).Substring(0, length);
@@ -75,7 +77,7 @@ namespace background4_2
                         preOutput[0, (j - 1) * 3 + 3] = "";
                         
                         preOutput[i, (j - 1) * 3 + 1] = timeTable[i - 1, j - 1].classroom.ToString();
-                        preOutput[i, (j - 1) * 3 + 2] = timeTable[i - 1, j - 1].subject;
+                        preOutput[i, (j - 1) * 3 + 2] = timeTable[i - 1, j - 1].subject.ToString();
                         preOutput[i, (j - 1) * 3 + 3] = timeTable[i - 1, j - 1].teacher;
                     }
                     else
@@ -155,7 +157,8 @@ namespace background4_2
                         timeTable[i, index].number = index + 1;                   
                         timeTable[i, index].group = group;
                         timeTable[i, index].teacher = file.ReadLine();
-                        timeTable[i, index].subject = file.ReadLine();
+                        Enum.TryParse(file.ReadLine(), out Subjects result);
+                        timeTable[i, index].subject = result;
                         timeTable[i, index].classroom = int.Parse(file.ReadLine());
                     }
                 }
@@ -164,13 +167,75 @@ namespace background4_2
             Check(timeTable);
             return timeTable;
         }
-        
+        private static void OutputByGroup(Lesson[,] timeTable)
+        {
+            Console.Write("Введите группу, для которой требуется вывести рассписание: ");
+            string group = Console.ReadLine();
+            int groupIndex = -1;
+            bool isFound = false;
+            int len = 20;
+            int maxj = timeTable.GetLength(1);
+            string[] preOutput = new string[3 * maxj + 1];
+
+            for (int i = 0; i < timeTable.GetLength(0); i++)
+            {
+                for (int k = 0; k < timeTable.GetLength((1)); k++)
+                {
+                    if (timeTable[i, k].group == group)
+                    {
+                        isFound = true;
+                    
+                        for (int j = 1; j < maxj + 1; j++)
+                        {
+                            if (timeTable[i, j - 1].number != 0)
+                            {
+                                // preOutput[i - 1, 0] = "";
+                                preOutput[0] = timeTable[i, j - 1].group;
+                                // preOutput[i, 0] = "";
+                        
+                                preOutput[(j - 1) * 3 + 1] = "";
+                                preOutput[(j - 1) * 3 + 2] = (j).ToString();
+                                preOutput[(j - 1) * 3 + 3] = "";
+                        
+                                preOutput[(j - 1) * 3 + 1] = timeTable[i , j - 1].classroom.ToString();
+                                preOutput[(j - 1) * 3 + 2] = timeTable[i , j - 1].subject.ToString();
+                                preOutput[(j - 1) * 3 + 3] = timeTable[i, j - 1].teacher;
+                            }
+                            else
+                            {
+                                preOutput[(j - 1) * 3 + 1] = "";
+                                preOutput[(j - 1) * 3 + 2] = ""; 
+                                preOutput[(j - 1) * 3 + 3] = "";
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (isFound)
+            {
+                for (int j = 0; j < preOutput.Length; j++)
+                {
+                    Console.WriteLine(preOutput[j]);
+                }
+            }
+        }
+
+        private static void FeelSpaces(Lesson[,] timeTable)
+        {
+            Console.Write("Введите группу, которую хотите проверить на пропуски в рассписании: ");
+            string group = Console.ReadLine();
+            
+            
+        }
         public static void Main(string[] args)
         {
             const string path = "input.txt";
             
             Lesson[,] timeTable = InputFromFile(path);
             Output(timeTable);
+            OutputByGroup(timeTable);
         }
     }
 }
