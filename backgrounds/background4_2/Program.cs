@@ -140,7 +140,7 @@ namespace background4_2
             string group;
             int lessonsCount;
             int index;
-            
+
             for (int i = 0; i < groupsCount; i++)
             {
                 group = file.ReadLine();
@@ -154,7 +154,7 @@ namespace background4_2
                     }
                     else
                     {
-                        timeTable[i, index].number = index + 1;                   
+                        timeTable[i, index].number = index + 1;
                         timeTable[i, index].group = group;
                         timeTable[i, index].teacher = file.ReadLine();
                         Enum.TryParse(file.ReadLine(), out Subjects result);
@@ -163,6 +163,7 @@ namespace background4_2
                     }
                 }
             }
+
             file.Close();
             Check(timeTable);
             return timeTable;
@@ -222,12 +223,79 @@ namespace background4_2
             }
         }
 
-        private static void FeelSpaces(Lesson[,] timeTable)
+        private static void FillSpaces(Lesson[,] timeTable, string filePath)
         {
             Console.Write("Введите группу, которую хотите проверить на пропуски в рассписании: ");
             string group = Console.ReadLine();
+            StreamReader file = new StreamReader(filePath);
+
+            int[] allClassrooms = Array.ConvertAll(file.ReadLine().Split(','), int.Parse);
+            string[] allTeachers = file.ReadLine().Split(',');
+            file.Close();
+
+            int[] tmpClassrooms = new int[allClassrooms.Length];
+            string[] tmpTeachers = new string[allTeachers.Length];
             
+            int groupIndex = -1;
+            int tmp;
             
+            for (int i = 0; i < timeTable.GetLength(0); i++)
+            {
+                for (int j = 0; j < timeTable.GetLength(1); j++)
+                {
+                    if (timeTable[i, j].group == group)
+                    {
+                        groupIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < timeTable.GetLength(1); i++)
+            {
+                for (int k = 0; k < tmpClassrooms.Length; k++)
+                {
+                    tmpClassrooms[k] = -1;
+                }
+                for (int k2 = 0; k2 < tmpTeachers.Length; k2++)
+                {
+                    tmpTeachers[k2] = "";
+                }
+                
+                if (timeTable[groupIndex, i].number == 0)
+                {
+                    for (int j = 0; j < timeTable.GetLength(0); j++)
+                    {
+                        if (j != groupIndex)
+                        {
+                            if (timeTable[j, i].number != 0)
+                            {
+                                Console.Write('q');
+                                tmpClassrooms[i] = timeTable[j, i].classroom;
+                                tmpTeachers[i] = timeTable[j, i].teacher;
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine($"Пробел на {i+1} уроке может быть заполнен следующими учителями:");
+                for (int q = 0; q < allTeachers.Length; q++)
+                {
+                    tmp = 0;
+                    for (int q2 = 0; q2 < allTeachers.Length; q2++)
+                    {
+                        if (allTeachers[q] == tmpTeachers[q2])
+                        {
+                            tmp = 1;
+                        }
+                    }
+
+                    if (tmp == 0)
+                    {
+                        Console.Write($"{allTeachers[q]}, ");
+                    }
+                }
+                Console.WriteLine();
+            }
         }
         public static void Main(string[] args)
         {
@@ -235,6 +303,7 @@ namespace background4_2
             
             Lesson[,] timeTable = InputFromFile(path);
             Output(timeTable);
+            FillSpaces(timeTable, "inputAll.txt");
             OutputByGroup(timeTable);
         }
     }
