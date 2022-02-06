@@ -232,12 +232,13 @@ namespace background4_2
             int[] allClassrooms = Array.ConvertAll(file.ReadLine().Split(','), int.Parse);
             string[] allTeachers = file.ReadLine().Split(',');
             file.Close();
-
+            
             int[] tmpClassrooms = new int[allClassrooms.Length];
             string[] tmpTeachers = new string[allTeachers.Length];
             
             int groupIndex = -1;
             int tmp;
+            bool marker;
             
             for (int i = 0; i < timeTable.GetLength(0); i++)
             {
@@ -270,31 +271,65 @@ namespace background4_2
                         {
                             if (timeTable[j, i].number != 0)
                             {
-                                Console.Write('q');
-                                tmpClassrooms[i] = timeTable[j, i].classroom;
-                                tmpTeachers[i] = timeTable[j, i].teacher;
+                                tmpClassrooms[j] = timeTable[j, i].classroom;
+                                tmpTeachers[j] = timeTable[j, i].teacher;
                             }
                         }
                     }
                 }
-                Console.WriteLine($"Пробел на {i+1} уроке может быть заполнен следующими учителями:");
-                for (int q = 0; q < allTeachers.Length; q++)
+
+                marker = false;
+                for (int m = 0; m < tmpTeachers.Length; m++)
                 {
-                    tmp = 0;
-                    for (int q2 = 0; q2 < allTeachers.Length; q2++)
+                    if (tmpTeachers[m] != "")
                     {
-                        if (allTeachers[q] == tmpTeachers[q2])
+                        marker = true;
+                        break;
+                    }
+                }
+
+                if (marker)
+                {
+                    Console.WriteLine($"Пробел на {i + 1} уроке может быть заполнен следующими учителями:");
+                    for (int q = 0; q < allTeachers.Length; q++)
+                    {
+                        tmp = 0;
+                        for (int q2 = 0; q2 < allTeachers.Length; q2++)
                         {
-                            tmp = 1;
+                            if (allTeachers[q] == tmpTeachers[q2])
+                            {
+                                tmp = 1;
+                            }
+                        }
+
+                        if (tmp == 0)
+                        {
+                            Console.Write($"{allTeachers[q]}, ");
                         }
                     }
 
-                    if (tmp == 0)
+                    Console.WriteLine();
+                    
+                    Console.WriteLine($"Урок на {i + 1} уроке может быть проведен в следующих кабинетах:");
+                    for (int q = 0; q < allClassrooms.Length; q++)
                     {
-                        Console.Write($"{allTeachers[q]}, ");
+                        tmp = 0;
+                        for (int q2 = 0; q2 < allClassrooms.Length; q2++)
+                        {
+                            if (allClassrooms[q] == tmpClassrooms[q2])
+                            {
+                                tmp = 1;
+                            }
+                        }
+
+                        if (tmp == 0)
+                        {
+                            Console.Write($"{allClassrooms[q]}, ");
+                        }
                     }
+
+                    Console.WriteLine("\n");
                 }
-                Console.WriteLine();
             }
         }
         public static void Main(string[] args)
