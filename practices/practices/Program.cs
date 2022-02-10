@@ -45,7 +45,15 @@ namespace practices
 
         private void InputAxis()
         {
-            Console.WriteLine("");
+            Console.WriteLine("Если хотите сделать смещение по оси X введите 1\n" +
+                              "Если хотите сделать смещение по оси Y введите 2\n" +
+                              "Если хотите сделать смещение по оси Z введите 3\n");
+
+            int option = int.Parse(Console.ReadLine());
+            Console.Write("Введите значение на которое требуется изменить: ");
+            float distance = float.Parse(Console.ReadLine());
+            
+            Move(option, distance);
         }
     }
 
