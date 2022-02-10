@@ -14,7 +14,7 @@ namespace background4_2
             public Subjects subject;
             public int number;
         }
-        enum Subjects { Алгебра, ООП, ТОИ, Геометрия, Русский, Химия }
+        enum Subjects { Алгебра, ООП, ТОИ, Геометрия, Русский, Химия, Физкультура }
         private static string ToFixedSize(int length, string source)
         {
             return source.PadRight(length).Substring(0, length);
