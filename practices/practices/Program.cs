@@ -35,13 +35,10 @@ namespace practices
 
         public void Output()
         {
-            Program.OutputPoints(x, y, z);
+            Console.WriteLine($"x: {x}; y: {y}; z: {z}");
         }
-    }
-
-    internal class Program
-    {
-        private static void InputAxis(out int option, out float distance)
+        
+        public static void InputAxis(out int option, out float distance)
         {
             Console.WriteLine("Для смещения по оси X введите 1\n" +
                               "Для смещения по оси Y введите 2\n" +
@@ -51,38 +48,42 @@ namespace practices
             Console.Write("На какое значение изменить? ");
             distance = float.Parse(Console.ReadLine());
         }
-        public static void OutputPoints(float x, float y, float z)
-        {
-            Console.WriteLine($"x: {x}; y: {y}; z: {z}");
-        }
-        private static Point3D InputDot()
+
+        public static Point3D InputDot()
         {
             Console.WriteLine("Для ввода вручную введите 1\n" +
                               "Для точки в начале координат введите 2");
             int selectedOption = int.Parse(Console.ReadLine());
-            
+
             if (selectedOption == 2)
+            {
+                Console.WriteLine("Точка создана");
                 return new Point3D();
+            }
+
             Console.Write("Введите координату X: ");
             float x = float.Parse(Console.ReadLine());
             Console.Write("Введите координату Y: ");
             float y = float.Parse(Console.ReadLine());
             Console.Write("Введите координату Z: ");
             float z = float.Parse(Console.ReadLine());
+            
+            Console.WriteLine("Точка создана");
             return new Point3D(x, y, z);
         }
-        
+    }
+
+    internal class Program
+    {
         public static void Main()
         {
-            Point3D point1 = InputDot();
-            Point3D point2 = InputDot();
-
-            int option;
-            float distance;
-            InputAxis(out option, out distance);
+            Point3D point1 = Point3D.InputDot();
+            Point3D point2 = Point3D.InputDot();
+            
+            Point3D.InputAxis(out int option, out float distance);
             point1.Move(option, distance);
             
-            InputAxis(out option, out distance);
+            Point3D.InputAxis(out option, out distance);
             point2.Move(option, distance);
             
             point1.Output();
