@@ -23,7 +23,7 @@ namespace practices
             this.z = z;
         }
 
-        void Move(int axis, float distance)
+        public void Move(int axis, float distance)
         {
             switch (axis)
             {
@@ -33,37 +33,34 @@ namespace practices
             }
         }
 
-        void Output()
+        public void Output()
         {
-            p OutputPoints(x, y, z);
-        }
-
-        private void InputAxis()
-        {
-            Console.WriteLine("Если хотите сделать смещение по оси X введите 1\n" +
-                              "Если хотите сделать смещение по оси Y введите 2\n" +
-                              "Если хотите сделать смещение по оси Z введите 3\n");
-
-            int option = int.Parse(Console.ReadLine());
-            Console.Write("Введите значение на которое требуется изменить: ");
-            float distance = float.Parse(Console.ReadLine());
-            
-            Move(option, distance);
+            Program.OutputPoints(x, y, z);
         }
     }
 
     internal class Program
     {
-        private static void OutputPoints(float x, float y, float z)
+        private static void InputAxis(out int option, out float distance)
+        {
+            Console.WriteLine("Для смещения по оси X введите 1\n" +
+                              "Для смещения по оси Y введите 2\n" +
+                              "Для смещения по оси Z введите 3\n");
+
+            option = int.Parse(Console.ReadLine());
+            Console.Write("На какое значение изменить? ");
+            distance = float.Parse(Console.ReadLine());
+        }
+        public static void OutputPoints(float x, float y, float z)
         {
             Console.WriteLine($"x: {x}; y: {y}; z: {z}");
         }
         private static Point3D InputDot()
         {
-            Console.WriteLine("Если хотите ввести координаты вручную введите 1\n" +
-                              "Если хотите создвть точку в начале воординат введите 2");
+            Console.WriteLine("Для ввода вручную введите 1\n" +
+                              "Для точки в начале координат введите 2");
             int selectedOption = int.Parse(Console.ReadLine());
-            Point3D i = new Point3D();
+            
             if (selectedOption == 2)
                 return new Point3D();
             Console.Write("Введите координату X: ");
@@ -80,7 +77,16 @@ namespace practices
             Point3D point1 = InputDot();
             Point3D point2 = InputDot();
 
+            int option;
+            float distance;
+            InputAxis(out option, out distance);
+            point1.Move(option, distance);
             
+            InputAxis(out option, out distance);
+            point2.Move(option, distance);
+            
+            point1.Output();
+            point2.Output();
         }
     }
 }
