@@ -35,12 +35,7 @@ namespace practices
 
         void Output()
         {
-            OutputPoints(x, y, z);
-        }
-        
-        private void OutputPoints(float x, float y, float z)
-        {
-            Console.WriteLine($"x: {x}; y: {y}; z: {z}");
+            p OutputPoints(x, y, z);
         }
 
         private void InputAxis()
@@ -59,6 +54,10 @@ namespace practices
 
     internal class Program
     {
+        private static void OutputPoints(float x, float y, float z)
+        {
+            Console.WriteLine($"x: {x}; y: {y}; z: {z}");
+        }
         private static Point3D InputDot()
         {
             Console.WriteLine("Если хотите ввести координаты вручную введите 1\n" +
