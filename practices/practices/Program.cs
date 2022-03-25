@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace practices
 {
@@ -9,26 +10,52 @@ namespace practices
         private double y;
         private double z;
         
-        public double X
+       public double X
         {
-            get { return X; }
-            set { if (value >= 0) x = value; }
+            get { return x; }
+            set
+            {
+                if (value > 0) x = value;
+            }
         }
-        public double Y
+       public double Y
         {
-            get { return X; }
-            set { if (value >= 0) x = value; }
+            get { return y; }
+            set
+            {
+                if (value > 0 && value < 100) y = value;
+                else y = 100;
+            }
         }
         public double Z
         {
-            get { return X; }
-            set { if (value >= 0) x = value; }
+            get { return z; }
+            set
+            {
+                if (value < x + y) z = value;
+                else Console.WriteLine($"ошибка: {value} больше, чем {x + y}");
+            }
         }
-
+        public bool IsInArea
+        {
+            get { return (y < x && x < 10 && y > 2); }
+        }
         public Point3D()
         {
             x = 0;
             y = 0;
+            z = 0;
+        }
+        public Point3D(double c)
+        {
+            x = c - c % 1;
+            y = c % 1;
+
+            while (y % 1 >= 0.0000001)
+            {
+                y *= 10;
+            }
+            
             z = 0;
         }
         public Point3D(double x, double y,double z)
@@ -48,6 +75,14 @@ namespace practices
         }
         public double RadiusVector{
             get { return Math.Sqrt(x * x + y * y + z * z); }
+        }
+        public static Point3D operator +(Point3D a, Point3D b)
+        {
+             return new Point3D(a.x += b.x, a.y += b.y, a.z += b.z);
+        }
+        public static Point3D operator +(Point3D a, int b)
+        {
+            return new Point3D(a.x += b, a.y += b, a.z += b);
         }
         public void Addiction(Point3D secondPoint)
         {
@@ -72,13 +107,20 @@ namespace practices
         public static Point3D InputDot()
         {
             Console.WriteLine("Для ввода вручную введите 1\n" +
-                              "Для точки в начале координат введите 2");
+                              "Для точки в начале координат введите 2\n" +
+                              "Для точки через число с фикс. точку введите 3");
             int selectedOption = int.Parse(Console.ReadLine());
 
             if (selectedOption == 2)
             {
                 Console.WriteLine("Точка создана");
                 return new Point3D();
+            }
+
+            if (selectedOption == 3)
+            {
+                Console.WriteLine("Введите число с фиксированной точкой");
+                return  new Point3D(double.Parse(Console.ReadLine()));
             }
 
             Console.Write("Введите координату X: ");
@@ -98,7 +140,10 @@ namespace practices
         public static void Main()
         {
             Point3D point1 = Point3D.InputDot();
+            point1.Output();
+            
             Point3D point2 = Point3D.InputDot();
+            point2.Output();
             
             Point3D.InputAxis(out int option, out double distance);
             point1.Move(option, distance);
@@ -112,11 +157,18 @@ namespace practices
             Console.WriteLine($"Радиус верктор равен {point1.RadiusVector}");
             point1.Output(); 
             
-            point1.Addiction(point2);
+             Point3D point3 = point1 + point2;
             
-            Console.Write("Новые координаты: "); 
+            Console.Write("Новая точка: "); 
+            point3.Output();
+
             point1.Output();
             point2.Output();
+
+            if (point1.IsInArea)
+                Console.WriteLine("Точка 1 в области");    
+            else 
+                Console.WriteLine("Точка 1 вне области");
 
         }
     }
