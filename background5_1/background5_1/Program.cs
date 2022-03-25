@@ -9,7 +9,7 @@ namespace background5_1
         private static int valueToFill = -1000; 
         public enum Monthes
         {
-            January, February, 
+            January = 0, February, 
             March, April, May,
             June, July, August,
             September, October, November,
@@ -33,18 +33,18 @@ namespace background5_1
             { -20, 10 }
         };
 
-        public MatrixWeather()
+        private MatrixWeather()
         {
-            month = (Monthes)rnd.Next(1, 13);
-            day = rnd.Next(1, 8);
+            month = (Monthes)rnd.Next(0, 12);
+            day = rnd.Next(0, 7);
 
             FillTemp();
         }
 
-        public MatrixWeather(int day, int month)
+        private MatrixWeather(int day, int month)
         {
-            Month = (Monthes)month;
-            Day = day;
+            this.month = (Monthes)month;
+            this.day = day;
             
             FillTemp();
 
@@ -74,7 +74,7 @@ namespace background5_1
             {
                 try
                 {
-                    if (value > 0 && value <= 7)
+                    if (value >= 0 && value < 7)
                     {
                         ChangeFirstDay(value);
                         day = value;
@@ -129,21 +129,22 @@ namespace background5_1
         }
         private void FillIntTwoArray(int[,] arr, int value)
         {
-            int i = arr.GetLength(0) - 1;
-            int j = arr.GetLength(1) - 1;
-
-            for (; i >= 0; i--)
-                for (; j >= 0; j--)
-                    arr[i, j] = value;
+            int x = arr.GetLength(0);
+            int y = arr.GetLength(1);
+            
+            for(int i = 0; i < x; i++)
+            for (int j = 0; j < y; j++)
+                arr[i, j] = value;
         }
         private void FillTemp()
         {
             temperature = new int[6, 7];
+            FillIntTwoArray(temperature, valueToFill);
             int x = temperature.GetLength(0);
             int y = temperature.GetLength(1);
             int leftValues = daysInMonth[(int) month];
             
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i < y; i++)
             {
                 if(i < day) temperature[0, i] = valueToFill;
                 else {
@@ -165,10 +166,12 @@ namespace background5_1
         public void Output()
         {
             int d = 0;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             for (int i = 0; i < 7; i++)
                 Console.Write($"{(DaysOfWeek)i}\t");
             Console.WriteLine();
-            
+            Console.ForegroundColor = ConsoleColor.White;
+
             for (int i = 0; i < temperature.Length; i++)
             {
                 int j = i / 7;
@@ -176,7 +179,10 @@ namespace background5_1
                 if (temperature[j, ir] != valueToFill)
                 {                
                     d++;
-                    Console.Write($"{d} {temperature[j, ir]}");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(d);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write($" {temperature[j, ir]}");
                 }
                 Console.Write("\t");
 
@@ -187,6 +193,7 @@ namespace background5_1
         private void ChangeFirstDay(int newDay)
         {
             int[,] tmpTemperature = new int[6, 7];
+
             FillIntTwoArray(tmpTemperature, valueToFill);
             int diff = newDay - day;
             for (int i = 0; i < temperature.Length; i++)
@@ -224,12 +231,11 @@ namespace background5_1
         public int JustJump
         {
             get
-            {
-                int value = temperature[2, 4];
-                int newValue = temperature[2, 4];
+            { 
+                int value;
+                int newValue = temperature[0, day];
+                int diff = 0;
 
-                int diff = Math.Abs(value - newValue);
-                
                 for (int i = 0; i < temperature.GetLength(0); i++)
                 for (int j = 1; j < temperature.GetLength(1); j++)
                 {
@@ -246,12 +252,12 @@ namespace background5_1
         }
        
         public int Jump(out int dayN, out int tempN)
-        { 
-            int value = temperature[0, 0];
-            int newValue = temperature[0, 0];
+        {
+            int value;
+            int newValue = temperature[0, day];
             dayN = 0;
             tempN = 0; 
-            int diff = Math.Abs(value - newValue);
+            int diff = 0;
                 
                 for (int i = 0; i < temperature.GetLength(0); i++)
                 for (int j = 1; j < temperature.GetLength(1); j++)
@@ -264,7 +270,7 @@ namespace background5_1
                         if (Math.Abs(value - newValue) > diff)
                         {
                             diff = Math.Abs(value - newValue);
-                            dayN = day + i * 7 + j;
+                            dayN = (i - 1) * 7 + j + (7 - day);
                             tempN = value;
                         }
                     }
@@ -273,29 +279,103 @@ namespace background5_1
                 return diff;
             
         }
+
+        public static MatrixWeather Create()
+        {
+            MatrixWeather weather1;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("1) Создать случайный месяц\n2) Создать месяц с заданными днями");
+                    int option = int.Parse(Console.ReadLine());
+                    if (option == 1)
+                    { 
+                        weather1 = new MatrixWeather();
+                        
+                        return weather1;
+                    }
+                    else if (option == 2)
+                    {
+                        int day = int.Parse(Console.ReadLine());
+                        int month = int.Parse(Console.ReadLine());
+
+                        weather1 = new MatrixWeather(day, month);
+                        
+                        return weather1;
+                    }
+                    break;
+                }
+                
+                catch (Exception e)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Ошибка:" + e);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
+            }
+
+            return new MatrixWeather();
+        }
     }
     
     internal class Program
     {
         public static void Main()
         {
-            MatrixWeather weather1 = new MatrixWeather(3, 4);
+            MatrixWeather weather1;
+
+            int option;
+            
+            weather1 = MatrixWeather.Create();
+            
             weather1.Output();
-            
-            Console.WriteLine(weather1.DayOfWeek);
-            Console.WriteLine(weather1.Month);
-            Console.WriteLine(weather1.DaysInDiary);
-            Console.WriteLine(weather1.ZeroDays);
-            
-            weather1.Day = 6;
-            weather1.Output();
-            
-            Console.WriteLine(weather1.JustJump);
-            
-            int day, temp;
-            Console.Write(weather1.Jump(out day,out temp));
-            Console.WriteLine($" {day} {temp}");
-            
+            while (true)
+            {
+                Console.WriteLine(@"
+1) Вывести день недели первого дня месяца
+2) Изменить день недели первого месяца
+3) Вывести месяц
+4) Вывести массив с температурой по дням
+5) Вывести количество дней в месяце
+6) Вывести количество дней с нулевой температурой
+7) Вывести максимальный скачок температуры
+8) Вывести максимальный скачок с первым днем и температурой");
+                
+                try
+                {
+                    option = int.Parse(Console.ReadLine());
+                    switch (option)
+                    {
+                        case 1: Console.WriteLine("День недели: " + weather1.DayOfWeek); break;
+                        case 2: 
+                            Console.WriteLine("Введите новый день недели (0 - пн, 6 - вс");
+                            weather1.Day = int.Parse(Console.ReadLine()); 
+                            break;
+                        case 3: Console.WriteLine("Месяц: " + weather1.Month); break;
+                        case 4: weather1.Output(); break;
+
+                        case 5: Console.WriteLine("Дней в месяце: " + weather1.DaysInDiary); break;
+                        case 6: Console.WriteLine("Дней с 0 температурой: " + weather1.ZeroDays); break;
+                        case 7: Console.WriteLine("Скачок: " + weather1.JustJump); break;
+                        case 8: 
+                            int day, temp;
+                            Console.Write("Скачок: " + weather1.Jump(out day,out temp));
+                            Console.WriteLine($" День: {day} Температура: {temp}");
+                            break;
+
+                        default: break;
+                    }
+
+                    Console.ReadKey();
+                }
+                catch (Exception e)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Ошибка:" + e);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
+            }
         }
     }
 }
