@@ -391,3 +391,10 @@ FodyWeavers.xsd
 
 # Support for Project snippet scope
 !.vscode/*.code-snippets
+informatics/
+nto/nto.sln
+nto/nto/nto.csproj
+nto/nto/Program.cs
+nto/nto/Properties/AssemblyInfo.cs
+nto/task2/Program.cs
+nto/task2/Properties/AssemblyInfo.cs
