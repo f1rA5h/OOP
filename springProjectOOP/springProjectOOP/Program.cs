@@ -133,12 +133,9 @@ namespace springProjectOOP
           {
             i++;
             if (i == MainDeck.deckSize - 1)
-            {
               throw new Exception("ну крч игра доиграна не будет они одновременно скинули по пол колоды");
-            }
           }
           moves++;
-          
           buffer[i] = player1.UpperCard();
           buffer[i + 1] = player2.UpperCard();
 
@@ -153,12 +150,8 @@ namespace springProjectOOP
         if (buffer[i] > buffer[i + 1])
           {
             for (int k = 0; k < MainDeck.deckSize; k++)
-            {
               if (buffer[k] != 0)
-              {
                 player1.AddCard(buffer[k]);
-              }
-            }
 
             warInProgress = false;
             buffer = new int[MainDeck.deckSize];
@@ -166,14 +159,10 @@ namespace springProjectOOP
           else if (buffer[i] < buffer[i + 1])
           {
             for (int k = 0; k < MainDeck.deckSize; k++)
-            {
               if (buffer[k] != 0)
-              {
                 player2.AddCard(buffer[k]);
-              }
-            }
-            
-            warInProgress = false;
+
+              warInProgress = false;
             buffer = new int[MainDeck.deckSize];
           }
         }
@@ -186,9 +175,7 @@ namespace springProjectOOP
     public static void PrintArray(Array array)
     {
       foreach(var item in array)
-      {
         Console.Write($"{item} ");
-      }
       Console.WriteLine();
     }
 
