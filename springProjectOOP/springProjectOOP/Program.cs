@@ -2,14 +2,15 @@
 
 namespace springProjectOOP
 {
-  enum Cards { Шестерка = 6, Семерка, Восьмерка, Девятка, Десятка, Валет, Дама, Король, Туз }
+  enum Cards { Шестерка = 6, Семерка, Восьмерка, Девятка, Десятка, Валет, Дама, Король, Туз } 
+  // да, этот enum не должен использоваться только для вывода. но я про него забыл
   class MainDeck
   {
-    public const int deckSize = 8;
+    public const int deckSize = 36; // изменять для изменения
     private Random random = new Random();
     private readonly int[] deffaultDeck = FillDeffaultDeck();
     private int[] deck;
-    public int[] Deck { get { return deck; } set { deck = value; } }
+
     public MainDeck()
     {
       deck = new int[deckSize];
@@ -34,7 +35,6 @@ namespace springProjectOOP
     private void shuffle()
     {
       deffaultDeck.CopyTo(deck , 0);
-      
       for (int i = deckSize - 1; i >= 1; i--)
       {
         int j = random.Next(i + 1);
@@ -50,7 +50,7 @@ namespace springProjectOOP
       {
         for (int j = 0; j < 4; j++)
         {
-          array[i + j] = 6 + i / 4;
+          array[i + j] = 6 + i / 4; 
         }
       }
       return array;
@@ -139,7 +139,8 @@ namespace springProjectOOP
           buffer[i] = player1.UpperCard();
           buffer[i + 1] = player2.UpperCard();
 
-          Console.WriteLine($"Игрок 1 достал {(Cards)buffer[i]}\nИгрок 2 достал {(Cards)buffer[i + 1]}");            Console.WriteLine(moves);
+          Console.WriteLine($"Игрок 1 достал {(Cards)buffer[i]}\nИгрок 2 достал {(Cards)buffer[i + 1]}");            
+          Console.WriteLine(moves);
           
           if (buffer[i] == 0 || buffer[i + 1] == 0)
           {
@@ -172,7 +173,7 @@ namespace springProjectOOP
 
   class Program
   {
-    public static void PrintArray(Array array)
+    public static void PrintArray(Array array) // просто ради теста в общем то
     {
       foreach(var item in array)
         Console.Write($"{item} ");
@@ -189,7 +190,15 @@ namespace springProjectOOP
       Player player2 = new Player(mainDeck.givePart(1), 2);
       
       Game game = new Game(player1, player2);
-      game.Start();
+      try
+      {
+        game.Start();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+        throw;
+      }
     }
   }
 }

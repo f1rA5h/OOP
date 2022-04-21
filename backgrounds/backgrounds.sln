@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "background4_2", "background
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Background5_1", "Background5_1\Background5_1.csproj", "{CE7B86AF-04DC-4360-AFFE-F9438FBAD7B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "background6_1", "background6_1\background6_1.csproj", "{B8B46229-13F2-42B1-803B-C28FC4FE7F12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{CE7B86AF-04DC-4360-AFFE-F9438FBAD7B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE7B86AF-04DC-4360-AFFE-F9438FBAD7B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE7B86AF-04DC-4360-AFFE-F9438FBAD7B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B46229-13F2-42B1-803B-C28FC4FE7F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B46229-13F2-42B1-803B-C28FC4FE7F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B46229-13F2-42B1-803B-C28FC4FE7F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B46229-13F2-42B1-803B-C28FC4FE7F12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
