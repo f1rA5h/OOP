@@ -8,3 +8,14 @@ C:\Users\shteyn.aleksey\source\repos\7.1\7.1\obj\Debug\7.1.csproj.GenerateResour
 C:\Users\shteyn.aleksey\source\repos\7.1\7.1\obj\Debug\7.1.csproj.CoreCompileInputs.cache
 C:\Users\shteyn.aleksey\source\repos\7.1\7.1\obj\Debug\7.1.exe
 C:\Users\shteyn.aleksey\source\repos\7.1\7.1\obj\Debug\7.1.pdb
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\bin\Debug\7.1.exe.config
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\bin\Debug\7.1.exe
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\bin\Debug\7.1.pdb
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\7.1.csproj.AssemblyReference.cache
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\7.1.csproj.SuggestedBindingRedirects.cache
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\_7._1.Form1.resources
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\_7._1.Properties.Resources.resources
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\7.1.csproj.GenerateResource.cache
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\7.1.csproj.CoreCompileInputs.cache
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\7.1.exe
+C:\Users\f1ra5h-pc\Documents\GitHub\OOP\7.1\7.1\obj\Debug\7.1.pdb
