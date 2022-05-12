@@ -34,21 +34,31 @@ label18
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            exhist = 0;
+            ClearTextBoxes();  
+            ClearValues();  
             groupBox3.Show();
             groupBox2.Show();
             label2.Hide();
             textBox2.Hide();
             button1.Show();
+            label3.Show();
+            textBox3.Show();
             choice = false;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            exhist = 0;
+            ClearTextBoxes();
+            ClearValues();
             groupBox3.Show();
             groupBox2.Show();
             label2.Show();
             textBox2.Show();
             button1.Show();
+            label3.Hide();
+            textBox3.Hide();
             choice = true;
         }
 
@@ -124,6 +134,22 @@ label18
                     MessageBox.Show("Введите корректные значения");
                 }
             }
+        }
+
+        private void ClearTextBoxes()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+        }
+
+        private void ClearValues()
+        {
+            label4.Text = "";
+            label15.Text = "";
+            label17.Text = "";
+            label19.Text = "";
+            label18.Text = "";
         }
     }
 }
