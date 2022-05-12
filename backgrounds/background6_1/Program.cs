@@ -176,7 +176,7 @@ namespace background6_1
                             break;
                         case 1:
                             rnd = (double) random.Next(1, 11) * random.Next(1, 11) / random.Next(1, 11);                            
-                            figures[i] = new Triangle(rnd, 10 + rnd, (double)rnd / 10 * 180, 20 + rnd, 20 + rnd);
+                            figures[i] = new Triangle(rnd, 10 + rnd, (double)rnd * 18, 20 + rnd, 20 + rnd);
                             break;
                         default:
                             throw new Exception("что черт возьми тут произошло");
